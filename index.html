@@ -8,36 +8,43 @@
 <body ng-controller="MainCtrl">
     <nav>
         <ul>
-            <li data-balloon="Bricklayers" data-balloon-pos="down">
-                <img alt="Bricklayers Logo" src="images/bricklayers.png"/>
+            <li class="selected">
+                Home
             </li>
-            <li data-balloon="Dynamet" data-balloon-pos="down">
-                <img alt="Dynamet Logo" src="images/dynamet.png"/>
+            <li>
+                Bricklayers
             </li>
-            <li data-balloon="Crabtree Lakers" data-balloon-pos="down">
-                <img alt="Lakers Logo" src="images/lakers.png"/>
+            <li >
+                Dynamet
             </li>
-            <li data-balloon="MetLife Ballers" data-balloon-pos="down">
-                <img alt="MetLife Ballers Logo" src="images/metlifeballers.png"/>
+            <li>
+                Crabtree Lakers
             </li>
-            <li data-balloon="The Nerds" data-balloon-pos="down">
-                <img alt="The Nerds Logo" src="images/nerds.png"/>
+            <li>
+                MetLife Ballers
             </li>
-            <li data-balloon="MetLife Basketball Association" data-balloon-pos="down">
-                <img alt="MBA Logo" src="images/mba.jpeg"/>
+            <li>
+                The Nerds
             </li>
-            <li data-balloon="Red Baron" data-balloon-pos="down">
-                <img alt="Red Baron Logo" src="images/redbaron.png"/>
+            <li>
+                Red Baron
             </li>
-            <li><img src="images/lakers.png"/></li>
-            <li><img src="images/lakers.png"/></li>
-            <li><img src="images/lakers.png"/></li>
-            <li><img src="images/lakers.png"/></li>
-            <li><img src="images/lakers.png"/></li>
+            <li>
+                Peanuts Gang
+            </li>
+            <li>
+                EI & Trey
+            </li>
+            <li>
+                BaaS
+            </li>
+            <li>
+                Last team
+            </li>
         </ul>
     </nav>
 
-    <section ng-if="!hasCurrentTeam">
+    <section id="standings" ng-if="!hasCurrentTeam">
         Standings
         <table >
             <thead>
@@ -119,8 +126,11 @@
 
 
 
+    <h1 ng-if="hasCurrentTeam && !currentTeam.startsWith('EI')">{{currentTeam}}</h1>
+    <h1 ng-if="hasCurrentTeam && currentTeam.startsWith('EI')">EI & Trey</h1>
 
     <section ng-if="hasCurrentTeam">
+        Scores
         <table >
             <tbody>
                 <tr ng-repeat="game in games">

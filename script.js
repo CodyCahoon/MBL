@@ -76,20 +76,22 @@
                 $scope.standings.push(teams[team]);
             }
             $scope.$apply();
-
-            console.log(teams);
         }
 
         $("nav li").click(function(){
-            var team =  $(this).data("balloon");
+            var team =  $(this).html().trim();
             $scope.currentTeam = team;
-            if ($scope.currentTeam.localeCompare("MetLife Basketball Association") !== 0){
+            if ($scope.currentTeam.localeCompare("Home") !== 0){
                 $scope.hasCurrentTeam = true;
             }else{
                 $scope.hasCurrentTeam = false;
             }
+            $("nav li").removeClass("selected");
+            $(this).addClass("selected");
             $scope.$apply();
-        })
+        });
+
+
 
         $scope.$watch("currentTeam", function(newVal, oldVal){
             if (newVal){
@@ -97,7 +99,7 @@
                 $scope.games = $scope.games.filter(function(value){
                     return value.team1.localeCompare($scope.currentTeam) === 0 ||
                     value.team2.localeCompare($scope.currentTeam) === 0 ||
-                    $scope.currentTeam.localeCompare("MetLife Basketball Association") === 0;
+                    $scope.currentTeam.localeCompare("Home") === 0;
                 });
             }
         });
