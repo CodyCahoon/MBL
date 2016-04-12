@@ -59,8 +59,6 @@
                 teams[currentGame.team1]["pd"] = teams[currentGame.team1]["pf"] - teams[currentGame.team1]["pa"];
                 teams[currentGame.team2]["pd"] = teams[currentGame.team2]["pf"] - teams[currentGame.team2]["pa"];
 
-
-
                 if (currentGame.win1){
                     teams[currentGame.team1]["wins"] = teams[currentGame.team1]["wins"] + 1;
                     teams[currentGame.team2]["losses"] = teams[currentGame.team2]["losses"] + 1;
@@ -72,8 +70,6 @@
                 teams[currentGame.team2]["wpct"] = teams[currentGame.team2]["wins"] / (teams[currentGame.team2]["wins"] + teams[currentGame.team2]["losses"]);
                 teams[currentGame.team1]["gp"] = teams[currentGame.team1]["wins"] + teams[currentGame.team1]["losses"];
                 teams[currentGame.team2]["gp"] = teams[currentGame.team2]["wins"] + teams[currentGame.team2]["losses"];
-
-
             }
             for (team in teams){
                 $scope.standings.push(teams[team]);
@@ -91,6 +87,7 @@
             if ($scope.currentTeam.localeCompare("Home") !== 0){
                 $scope.hasCurrentTeam = true;
             }else{
+                $("nav li").removeClass("grey");
                 $scope.hasCurrentTeam = false;
             }
             $("nav li").removeClass("selected");
@@ -98,6 +95,15 @@
             $scope.$apply();
         });
 
+        $("nav li:nth-child(n+2)").mouseover(function(){
+            $("nav li:nth-child(n+2)").addClass("grey");
+            $(this).removeClass("grey");
+        });
+
+        $("nav li:nth-child(n+2)").mouseleave(function(){
+            if (!$scope.hasCurrentTeam)
+                $("nav li:nth-child(n+2)").removeClass("grey");
+        });
 
 
         $scope.$watch("currentTeam", function(newVal, oldVal){
