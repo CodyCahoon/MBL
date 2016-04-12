@@ -10,6 +10,7 @@
         $scope.games = [];
         $scope.origGames = [];
         $scope.standings = [];
+        $scope.currentTeamObj = null;
         var teams = [];
 
         var addGame = function(team1, score1, team2, score2){
@@ -67,8 +68,10 @@
                     teams[currentGame.team2]["wins"] = teams[currentGame.team2]["wins"] +1;
                     teams[currentGame.team1]["losses"] = teams[currentGame.team1]["losses"] + 1;
                 }
-                teams[currentGame.team1]["wpct"] = teams[currentGame.team1]["wins"] + teams[currentGame.team1]["losses"] / teams[currentGame.team1]["wins"];
-                teams[currentGame.team2]["wpct"] = teams[currentGame.team2]["wins"] + teams[currentGame.team2]["losses"] / teams[currentGame.team2]["wins"];
+                teams[currentGame.team1]["wpct"] = teams[currentGame.team1]["wins"] / (teams[currentGame.team1]["wins"] + teams[currentGame.team1]["losses"]);
+                teams[currentGame.team2]["wpct"] = teams[currentGame.team2]["wins"] / (teams[currentGame.team2]["wins"] + teams[currentGame.team2]["losses"]);
+                teams[currentGame.team1]["gp"] = teams[currentGame.team1]["wins"] + teams[currentGame.team1]["losses"];
+                teams[currentGame.team2]["gp"] = teams[currentGame.team2]["wins"] + teams[currentGame.team2]["losses"];
 
 
             }
@@ -81,6 +84,10 @@
         $("nav li").click(function(){
             var team =  $(this).html().trim();
             $scope.currentTeam = team;
+            var array = $scope.standings.filter(function(value){
+                return value.name.localeCompare(team) === 0;
+            });
+            $scope.currentTeamObj = array[0];
             if ($scope.currentTeam.localeCompare("Home") !== 0){
                 $scope.hasCurrentTeam = true;
             }else{

@@ -52,25 +52,25 @@
                     <th>
                         Team
                     </th>
-                    <th>
+                    <th data-balloon="Wins" data-balloon-pos="up">
                         W
                     </th>
-                    <th>
+                    <th data-balloon="Losses" data-balloon-pos="up">
                         L
                     </th>
-                    <th>
+                    <th data-balloon="Points for" data-balloon-pos="up">
                         PF
                     </th>
-                    <th>
+                    <th data-balloon="Points Allowed" data-balloon-pos="up">
                         PA
                     </th>
-                    <th>
+                    <th data-balloon="Point Differential" data-balloon-pos="up">
                         PD
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="team in standings | orderBy:['-wins', 'wpct', '-pf', '+pa']">
+                <tr ng-repeat="team in standings | orderBy:['-wins', '-wpct', '-pf', '+pa']">
                     <td>
                         {{team.name}}
                     </td>
@@ -87,9 +87,7 @@
                         {{team.pa}}
                     </td>
                     <td>
-                        <span class="win" ng-if="team.pd > 0">{{team.pd}}</span>
-                        <span ng-if="team.pd === 0">{{team.pd}}</span>
-                        <span class="loss" ng-if="team.pd < 0">{{team.pd}}</span>
+                        <span ng-class="{'win':team.pd > 0, 'loss':team.pd < 0}">{{team.pd}}</span>
                     </td>
                 </tr>
             </tbody>
@@ -159,6 +157,57 @@
             </tbody>
         </table>
     </section>
+
+    <section ng-if="hasCurrentTeam">
+        Statistics
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Record
+                    </th>
+                    <th  data-balloon="Points for" data-balloon-pos="up">
+                        PF
+                    </th>
+                    <th  data-balloon="Points Allowed" data-balloon-pos="up">
+                        PA
+                    </th>
+                    <th  data-balloon="Point Differential" data-balloon-pos="up">
+                        PD
+                    </th>
+                    <th  data-balloon="Points for per game" data-balloon-pos="up">
+                        PFPG
+                    </th>
+                    <th  data-balloon="Points allowed per game" data-balloon-pos="up">
+                        PAPG
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        {{currentTeamObj.wins}} - {{currentTeamObj.losses}}
+                    </td>
+                    <td>
+                        {{currentTeamObj.pf}}
+                    </td>
+                    <td>
+                        {{currentTeamObj.pa}}
+                    </td>
+                    <td>
+                        <span ng-class="{'win':currentTeamObj.pd, 'loss':currentTeamObj.pd < 0}">{{currentTeamObj.pd}}</span>
+                    </td>
+                    <td>
+                        {{currentTeamObj.pf / currentTeamObj.gp | number:2}}
+                    </td>
+                    <td>
+                        {{currentTeamObj.pa / currentTeamObj.gp | number:2}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <script src="script.js"></script>

@@ -79,6 +79,10 @@ th{
     background:rgb(193, 193, 193);
 }
 
+th:nth-child(n + 2):hover{
+    cursor:pointer;
+}
+
 .win{
     color:rgb(92, 167, 92);
     font-weight:700;
