@@ -1,0 +1,82 @@
+html, body{
+    height:100%;
+    font-family: 'Raleway';
+}
+
+html, body, nav, ul, li, a, img{
+    margin:0;
+    padding:0;
+}
+
+nav{
+    width:100%;
+    height:100px;
+    border-bottom:1px solid black;
+}
+
+nav ul{
+    width:100%;
+    height:100%;
+    list-style:none;
+    display:flex;
+    justify-content: center;
+}
+
+nav ul li{
+    width:100%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav ul li:hover{
+    cursor:pointer;
+}
+
+nav img{
+    width:75px;
+}
+
+nav ul li:hover span{
+    opacity:1;
+}
+
+section{
+        float:left;
+        width:47.5%;
+        margin:50px 1%;
+}
+
+table{
+    border-collapse:collapse;
+    border: 1px solid black;
+    text-transform: uppercase;
+    width:100%;
+    text-align:center;
+    font-size:22px;
+    margin-bottom:25px;
+}
+
+tr{
+    border:1px solid black;
+}
+
+td{
+    padding:5px;
+}
+
+th{
+    font-weight:400;
+    background:rgb(193, 193, 193);
+}
+
+.win{
+    color:rgb(92, 167, 92);
+    font-weight:700;
+}
+
+.loss{
+    color:rgb(235, 56, 56);
+    font-weight:700;
+}
