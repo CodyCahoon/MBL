@@ -39,7 +39,7 @@
         var loadGames = function(){
             var pg = "Peanuts Gang";
             var dr = "The Deregulators";
-            var th = "The Nerds";
+            var tn = "The Nerds";
             var bl = "Bricklayers";
             var bs = "BaaS";
             var ei = "EI & Trey";
@@ -50,7 +50,7 @@
             
             //Week 1, Game 1
             addGame(pg, 48, dr, 41);
-            addGame(th, 21, bl, 45);
+            addGame(tn, 21, bl, 45);
             addGame(bs, 35, ei, 54);
             addGame(cl, 31, dr, 44);
             
@@ -61,13 +61,13 @@
             addGame(ei, 51, pg, 53);
             
             //Week 2, Game 1
-            addGame(mb, 85, th, 14);
+            addGame(mb, 85, tn, 14);
             addGame(dm, 45, rb, 96);
             addGame(bl, 46, pg, 65);
             addGame(ei, 58, cl, 39);
             
             //Week 2, Game 2
-            addGame(th, 43, rb, 103);
+            addGame(tn, 43, rb, 103);
             addGame(pg, 26, cl, 29);
             addGame(bs, 60, dm, 38);
             addGame(dr, 45, mb, 67);
@@ -75,7 +75,7 @@
             //Week 3, Game 1
             addGame(mb, 58, bl, 57);
             addGame(dr, 51, rb, 58);
-            addGame(bs, 50, th, 0);//forfeit
+            addGame(bs, 50, tn, 0);//forfeit
             addGame(ei, 60, dm, 41);
             
             //Week 3, Game 2
@@ -86,7 +86,7 @@
             
             //Week 4, Game 1
             addGame(rb, 59, pg, 47);
-            addGame(dm, 50, th, 0); //forfeit
+            addGame(dm, 50, tn, 0); //forfeit
             addGame(dr, 50, ei, 70);
             
             //Week 4, Game 2
