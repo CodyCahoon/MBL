@@ -37,12 +37,76 @@
         });
 
         var loadGames = function(){
-            addGame("MetLife Ballers", 30, "Bricklayers", 40);
-            addGame("Crabtree Lakers", 21, "MetLife Ballers", 32);
-            addGame("The Nerds", 22, "Crabtree Lakers", 21);
-            addGame("MetLife Ballers", 50, "The Nerds", 2);
-            addGame("Dynamet", 54, "Bricklayers", 40);
-
+            var pg = "Peanuts Gang";
+            var dr = "The Deregulators";
+            var th = "The Nerds";
+            var bl = "Bricklayers";
+            var bs = "BaaS";
+            var ei = "EI & Trey";
+            var cl = "Crabtree Lakers";
+            var rb = "Red Baron";
+            var mb = "MetLife Ballers";
+            var dm = "DynaMet";
+            
+            //Week 1, Game 1
+            addGame(pg, 48, dr, 41);
+            addGame(th, 21, bl, 45);
+            addGame(bs, 35, ei, 54);
+            addGame(cl, 31, dr, 44);
+            
+            //Week 1, Game 2
+            addGame(dm, 34, mb, 69);
+            addGame(bs, 30, cl, 26);
+            addGame(bl, 25, dr, 36);
+            addGame(ei, 51, pg, 53);
+            
+            //Week 2, Game 1
+            addGame(mb, 85, th, 14);
+            addGame(dm, 45, rb, 96);
+            addGame(bl, 46, pg, 65);
+            addGame(ei, 58, cl, 39);
+            
+            //Week 2, Game 2
+            addGame(th, 43, rb, 103);
+            addGame(pg, 26, cl, 29);
+            addGame(bs, 60, dm, 38);
+            addGame(dr, 45, mb, 67);
+            
+            //Week 3, Game 1
+            addGame(mb, 58, bl, 57);
+            addGame(dr, 51, rb, 58);
+            addGame(bs, 50, th, 0);//forfeit
+            addGame(ei, 60, dm, 41);
+            
+            //Week 3, Game 2
+            addGame(mb, 36, pg, 42);
+            addGame(dm, 31, cl, 25);
+            addGame(ei, 50, tn, 0);//forfeit
+            addGame(bl, 40, rb, 76);
+            
+            //Week 4, Game 1
+            addGame(rb, 59, pg, 47);
+            addGame(dm, 50, th, 0); //forfeit
+            addGame(dr, 50, ei, 70);
+            
+            //Week 4, Game 2
+            addGame(bs, 33, dr, 58);
+            addGame(dm, 44, pg, 43);
+            addGame(cl, 50, th, 0); //forfeit
+            
+            //Week 5, Game 1
+            addGame(bs, 38, mb, 72);
+            addGame(dr, 51, cl, 46);
+            addGame(bl, 59, ei, 72);
+            addGame(pg, 50, th, 0); //forfeit
+            
+            //Week 5. Game 2
+            addGame(dm, 42, dr, 48);
+            addGame(bl, 49, cl, 53);
+            addGame(ei, 52, mb, 57);
+            
+            
+            
             getStandings();
         }
 
