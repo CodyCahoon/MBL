@@ -92,13 +92,13 @@
             //Week 4, Game 2
             addGame(bs, 33, dr, 58);
             addGame(dm, 44, pg, 43);
-            addGame(cl, 50, th, 0); //forfeit
+            addGame(cl, 50, tn, 0); //forfeit
             
             //Week 5, Game 1
             addGame(bs, 38, mb, 72);
             addGame(dr, 51, cl, 46);
             addGame(bl, 59, ei, 72);
-            addGame(pg, 50, th, 0); //forfeit
+            addGame(pg, 50, tn, 0); //forfeit
             
             //Week 5. Game 2
             addGame(dm, 42, dr, 48);
