@@ -52,7 +52,7 @@
             addGame(pg, 48, dr, 41);
             addGame(tn, 21, bl, 45);
             addGame(bs, 35, ei, 54);
-            addGame(cl, 31, dr, 44);
+            addGame(cl, 31, rb, 44);
             
             //Week 1, Game 2
             addGame(dm, 34, mb, 69);
