@@ -80,7 +80,21 @@ tr{
 }
 
 #standings tr:nth-child(8){
-    border-bottom:2px solid #CC0000;;
+    border-bottom:2px solid #c00;
+}
+
+#results{
+    width:30%;
+}
+
+#results td:first-child{
+    width:90%;
+    text-align:left;
+}
+
+#results td:last-child{
+    width:10%;
+    text-align:left;
 }
 
 td{
@@ -126,4 +140,8 @@ h1{
 
 .grey{
     color:rgb(93, 93, 93);
+}
+
+#standings tr:nth-child(10){
+    display: none;
 }
