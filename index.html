@@ -73,7 +73,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="team in standings | orderBy:['-wins', '-wpct', '-pf', '+pa']">
+                <tr ng-repeat="team in standings | orderBy:['-wpct', 'losses', '-pf', '+pa']">
                     <td>
 
                     </td>
@@ -90,15 +90,15 @@
                         {{team.wpct | number:3}}
                     </td>
                     <td>
-                        {{team.pf / team.gp | number:1}}
+                        {{team.ppg | number:1}}
                     </td>
                     <td>
-                        {{team.pa / team.gp | number:1}}
+                        {{team.oppg | number:1}}
                     </td>
                     <td>
-                        <span class="win" ng-if="team.pd > 0">+{{team.pd / team.gp | number:1}}</span>
-                        <span class="loss" ng-if="team.pd < 0">{{team.pd /team.gp | number:1}}</span>
-                        <span ng-if="team.pd === 0">{{team.pd / team.gp | number:1}}</span>
+                        <span class="win" ng-if="team.pd > 0">+{{team.ppgd | number:1}}</span>
+                        <span class="loss" ng-if="team.pd < 0">{{team.ppgd  | number:1}}</span>
+                        <span ng-if="team.pd === 0">{{team.ppgd | number:1}}</span>
 
                     </td>
                 </tr>

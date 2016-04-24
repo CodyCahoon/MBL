@@ -117,7 +117,8 @@
                 teams[currentGame.team1] = teams[currentGame.team1] || {wins:0, losses:0, name:currentGame.team1, pf:0, pa:0, wpct:0};
                 teams[currentGame.team2] = teams[currentGame.team2] || {wins:0, losses:0, name:currentGame.team2, pf:0, pa:0, wpct:0};
 
-                if (currentGame.score1 + currentGame.score2 !== 2)
+                var isForfeit = currentGame.score1 + currentGame.score2 === 2;
+                if (!isForfeit)
                 {
                     teams[currentGame.team1]["pf"] += currentGame.score1;
                     teams[currentGame.team1]["pa"] += currentGame.score2;
@@ -138,6 +139,21 @@
                 teams[currentGame.team2]["wpct"] = teams[currentGame.team2]["wins"] / (teams[currentGame.team2]["wins"] + teams[currentGame.team2]["losses"]);
                 teams[currentGame.team1]["gp"] = teams[currentGame.team1]["wins"] + teams[currentGame.team1]["losses"];
                 teams[currentGame.team2]["gp"] = teams[currentGame.team2]["wins"] + teams[currentGame.team2]["losses"];
+
+                if (!isForfeit){
+                    teams[currentGame.team1]["gp"]--;
+                    teams[currentGame.team2]["gp"]--;
+                }
+
+                teams[currentGame.team1]["ppg"] = teams[currentGame.team1]["pf"] / teams[currentGame.team1]["gp"];
+                teams[currentGame.team2]["ppg"] = teams[currentGame.team2]["pf"] / teams[currentGame.team2]["gp"];
+
+                teams[currentGame.team1]["oppg"] = teams[currentGame.team1]["pa"] / teams[currentGame.team1]["gp"];
+                teams[currentGame.team2]["oppg"] = teams[currentGame.team2]["pa"] / teams[currentGame.team2]["gp"];
+
+                teams[currentGame.team1]["ppgd"] = teams[currentGame.team1]["ppg"] - teams[currentGame.team1]["oppg"];
+                teams[currentGame.team2]["ppgd"] = teams[currentGame.team2]["ppg"] - teams[currentGame.team2]["oppg"];
+
             }
             for (team in teams){
                 $scope.standings.push(teams[team]);
