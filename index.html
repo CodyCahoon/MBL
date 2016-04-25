@@ -210,15 +210,15 @@
                         {{currentTeamObj.wpct | number:3}}
                     </td>
                     <td>
-                        {{currentTeamObj.pf / currentTeamObj.gp | number:1}}
+                        {{currentTeamObj.ppg| number:1}}
                     </td>
                     <td>
-                        {{currentTeamObj.pa / currentTeamObj.gp | number:1}}
+                        {{currentTeamObj.oppg | number:1}}
                     </td>
                     <td>
-                        <span class="win" ng-if="currentTeamObj.pd > 0">+{{currentTeamObj.pd / currentTeamObj.gp | number:1}}</span>
-                        <span class="loss" ng-if="currentTeamObj.pd < 0">{{currentTeamObj.pd /currentTeamObj.gp | number:1}}</span>
-                        <span ng-if="currentTeamObj.pd === 0">{{currentTeamObj.pd / currentTeamObj.gp | number:1}}</span>
+                        <span class="win" ng-if="currentTeamObj.pd > 0">+{{currentTeamObj.ppgd | number:1}}</span>
+                        <span class="loss" ng-if="currentTeamObj.pd < 0">{{currentTeamObj.ppgd | number:1}}</span>
+                        <span ng-if="currentTeamObj.pd === 0">{{currentTeamObj.ppgd | number:1}}</span>
                     </td>
                     <td>
                         {{currentTeamObj.pf}}
