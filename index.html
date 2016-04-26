@@ -139,7 +139,7 @@
     <h1 ng-if="hasCurrentTeam && !currentTeam.startsWith('EI')">{{currentTeam}}</h1>
     <h1 ng-if="hasCurrentTeam && currentTeam.startsWith('EI')">EI & Trey</h1>
 
-    <section ng-if="hasCurrentTeam">
+    <section class="team-stats" ng-if="hasCurrentTeam">
         Scores
         <table >
             <tbody>
@@ -170,7 +170,7 @@
         </table>
     </section>
 
-    <section ng-if="hasCurrentTeam">
+    <section class="team-stats" ng-if="hasCurrentTeam">
         Statistics
         <table>
             <thead>

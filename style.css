@@ -61,7 +61,7 @@ nav img{
 
 section{
     float:left;
-    width:48%;
+    width:98%;
     margin:50px 1%;
 }
 
@@ -131,17 +131,14 @@ h1{
     content:counter(tr);
 }
 
-@media screen and (max-width: 850px){
-    section{
-        width:90%;
-        margin:50px 5%;
-    }
-}
-
 .grey{
     color:rgb(93, 93, 93);
 }
 
 #standings tr:nth-child(10){
     display: none;
+}
+
+.team-stats{
+    width:48vw;
 }
