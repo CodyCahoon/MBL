@@ -61,7 +61,7 @@ nav img{
 
 section{
     float:left;
-    width:98%;
+    width:48%;
     margin:50px 1%;
 }
 
@@ -79,12 +79,23 @@ tr{
     border:1px solid black;
 }
 
+
+#standings tr:nth-child(even){
+    background:#F1F2F3;
+}
+
+#standings td:nth-child(2){
+    text-align: left;
+}
+
 #standings tr:nth-child(8){
     border-bottom:2px solid #c00;
 }
 
-#results{
-    width:30%;
+#results table{
+    width:48%;
+    float:left;
+    margin:1%;
 }
 
 #results td:first-child{
@@ -141,4 +152,31 @@ h1{
 
 .team-stats{
     width:48vw;
+}
+
+.week-selector{
+    width:100%;
+    text-align:center;
+}
+
+.week-selector h1, .week-selector input{
+    display:inline-block;
+}
+
+.week-selector input{
+    -webkit-appearance:none;
+    appearance:none;
+    border:1px solid rgb(193, 193, 193);
+    background:white;
+    color:black;
+    text-align:center;
+    margin:0px 15px;
+}
+
+.week-selector input:hover{
+    cursor:pointer;
+}
+
+.week-selector input:focus, .week-selector input:active{
+    outline:none;
 }

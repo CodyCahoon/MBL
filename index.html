@@ -42,7 +42,7 @@
     </nav>
 
     <section id="standings" ng-if="!hasCurrentTeam">
-        Standings
+        <h1>Standings</h1>
         <table >
             <thead>
                 <tr>
@@ -107,7 +107,11 @@
     </section>
 
     <section id="results" ng-if="!hasCurrentTeam">
-        Results
+        <div class="week-selector">
+            <input type="button" id="prevWeek" value="< Previous Week">
+            <h1>Results - Game {{currentWeek}}</h1>
+            <input type="button" id="nextWeek" value=" Next Week >">
+        </div>
         <table  ng-repeat="game in games">
             <tbody>
                 <tr>

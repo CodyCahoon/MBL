@@ -11,14 +11,16 @@
         $scope.origGames = [];
         $scope.standings = [];
         $scope.currentTeamObj = null;
+        $scope.currentWeek = 0;
         var teams = [];
 
-        var addGame = function(team1, score1, team2, score2){
+        var addGame = function(team1, score1, team2, score2, gameNumber){
             var newGame = {
                 team1:team1,
                 score1:score1,
                 team2:team2,
-                score2:score2
+                score2:score2,
+                game:gameNumber
             }
             if (score1 > score2){
                 newGame["win1"] = true;
@@ -29,11 +31,37 @@
             }
             $scope.games.push(newGame);
             $scope.origGames.push(newGame);
+            $scope.currentWeek = gameNumber;
+            $scope.maxWeek = gameNumber;
             $scope.$apply();
         }
 
         $(document).ready(function(){
             loadGames();
+
+            $("body").on('click', '#prevWeek', function(){
+                if ($scope.currentWeek === 1){
+                    $scope.currentWeek = $scope.maxWeek;
+                } else {
+                    $scope.currentWeek--;
+                }
+                $scope.$apply();
+
+                resetGames();
+                filterByWeek();
+            });
+
+            $("body").on('click', '#nextWeek', function(){
+                if ($scope.currentWeek === $scope.maxWeek){
+                    $scope.currentWeek = 1
+                } else {
+                    $scope.currentWeek++;
+                }
+                $scope.$apply();
+
+                resetGames();
+                filterByWeek();
+            });
         });
 
         var loadGames = function(){
@@ -49,61 +77,61 @@
             var dm = "DynaMet";
 
             //Week 1, Day 1
-            addGame(pg, 48, dr, 41);
-            addGame(tn, 21, bl, 45);
-            addGame(bs, 35, ei, 54);
-            addGame(cl, 31, rb, 44);
+            addGame(pg, 48, dr, 41, 1);
+            addGame(tn, 21, bl, 45, 1);
+            addGame(bs, 35, ei, 54, 1);
+            addGame(cl, 31, rb, 44, 1);
 
             //Week 1, Day 2
-            addGame(dm, 34, mb, 69);
-            addGame(bs, 30, cl, 26);
-            addGame(bl, 25, dr, 36);
-            addGame(ei, 51, pg, 53);
+            addGame(dm, 34, mb, 69, 2);
+            addGame(bs, 30, cl, 26, 2);
+            addGame(bl, 25, dr, 36, 2);
+            addGame(ei, 51, pg, 53, 2);
 
             //Week 2, Day 1
-            addGame(mb, 85, tn, 14);
-            addGame(dm, 45, rb, 96);
-            addGame(bl, 46, pg, 65);
-            addGame(ei, 58, cl, 39);
+            addGame(mb, 85, tn, 14, 3);
+            addGame(dm, 45, rb, 96, 3);
+            addGame(bl, 46, pg, 65, 3);
+            addGame(ei, 58, cl, 39, 3);
 
             //Week 2, Day 2
-            addGame(tn, 43, rb, 103);
-            addGame(pg, 26, cl, 29);
-            addGame(bs, 60, dm, 38);
-            addGame(dr, 45, mb, 67);
+            addGame(tn, 43, rb, 103, 4);
+            addGame(pg, 26, cl, 29, 4);
+            addGame(bs, 60, dm, 38, 4);
+            addGame(dr, 45, mb, 67, 4);
 
             //Week 3, Day 1
-            addGame(mb, 58, bl, 57);
-            addGame(dr, 51, rb, 58);
-            addGame(bs, 2, tn, 0);//forfeit
-            addGame(ei, 60, dm, 41);
+            addGame(mb, 58, bl, 57, 5);
+            addGame(dr, 51, rb, 58, 5);
+            addGame(bs, 2, tn, 0, 5);//forfeit
+            addGame(ei, 60, dm, 41, 5);
 
             //Week 3, Day 2
-            addGame(mb, 36, pg, 42);
-            addGame(dm, 31, cl, 25);
-            addGame(ei, 2, tn, 0);//forfeit
-            addGame(bl, 40, rb, 76);
+            addGame(mb, 36, pg, 42, 6);
+            addGame(dm, 31, cl, 25, 6);
+            addGame(ei, 2, tn, 0, 6);//forfeit
+            addGame(bl, 40, rb, 76, 6);
 
             //Week 4, Day 1
-            addGame(rb, 59, pg, 47);
-            addGame(dm, 2, tn, 0); //forfeit
-            addGame(dr, 50, ei, 70);
+            addGame(rb, 59, pg, 47, 7);
+            addGame(dm, 2, tn, 0, 7); //forfeit
+            addGame(dr, 50, ei, 70, 7);
 
             //Week 4, Day 2
-            addGame(bs, 33, dr, 58);
-            addGame(dm, 44, pg, 43);
-            addGame(cl, 2, tn, 0); //forfeit
+            addGame(bs, 33, dr, 58, 8);
+            addGame(dm, 44, pg, 43, 8);
+            addGame(cl, 2, tn, 0, 8); //forfeit
 
             //Week 5, Day 1
-            addGame(bs, 38, mb, 72);
-            addGame(dr, 51, cl, 46);
-            addGame(bl, 59, ei, 72);
-            addGame(pg, 2, tn, 0); //forfeit
+            addGame(bs, 38, mb, 72, 9);
+            addGame(dr, 51, cl, 46, 9);
+            addGame(bl, 59, ei, 72, 9);
+            addGame(pg, 2, tn, 0, 9); //forfeit
 
             //Week 5. Day 2
-            addGame(dm, 42, dr, 48);
-            addGame(bl, 49, cl, 53);
-            addGame(ei, 52, mb, 57);
+            addGame(dm, 42, dr, 48, 10);
+            addGame(bl, 49, cl, 53, 10);
+            addGame(ei, 52, mb, 57, 10);
 
 
 
@@ -158,6 +186,10 @@
             for (team in teams){
                 $scope.standings.push(teams[team]);
             }
+
+            filterByWeek();
+
+
             $scope.$apply();
         }
 
@@ -203,8 +235,24 @@
                     value.team2.localeCompare($scope.currentTeam) === 0 ||
                     $scope.currentTeam.localeCompare("Home") === 0;
                 });
+                if ($scope.currentTeam.localeCompare("Home") === 0){
+                    filterByWeek();
+                }
             }
         });
+
+        function resetGames(){
+            $scope.games = $scope.origGames;
+        }
+
+        function filterByWeek(){
+            $scope.games = $scope.games.filter(function(value){
+                return value.game === $scope.currentWeek;
+            });
+            $scope.$apply();
+        }
+
+
 
     }
 
