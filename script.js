@@ -34,7 +34,8 @@
                 score1:score1,
                 team2:team2,
                 score2:score2,
-                game:gameNumber
+                game:gameNumber,
+                hasPlayed:false
             }
             if (score1 > score2){
                 newGame["win1"] = true;
@@ -43,11 +44,17 @@
                 newGame["win1"] = false;
                 newGame["win2"] = true;
             }
+
             newGame["date"] = $scope.dates[gameNumber - 1];
+            if (score1 + score2 !== 0) {
+                $scope.currentWeek = gameNumber;
+                newGame["hasPlayed"] = true;
+            }
+
             $scope.games.push(newGame);
             $scope.origGames.push(newGame);
-            $scope.currentWeek = gameNumber;
             $scope.maxWeek = gameNumber;
+
             $scope.$apply();
         }
 
@@ -148,6 +155,9 @@
             addGame(bl, 49, cl, 53, 10);
             addGame(ei, 52, mb, 57, 10);
 
+            //Week 6, Day 1
+            addGame(dm, 0, dr, 0, 11);
+
 
 
             getStandings();
@@ -160,7 +170,13 @@
                 teams[currentGame.team1] = teams[currentGame.team1] || {wins:0, losses:0, name:currentGame.team1, pf:0, pa:0, wpct:0};
                 teams[currentGame.team2] = teams[currentGame.team2] || {wins:0, losses:0, name:currentGame.team2, pf:0, pa:0, wpct:0};
 
+                var hasNotPlayed = currentGame.score1 + currentGame.score2 === 0;
+                if (hasNotPlayed){
+                    continue;
+                }
                 var isForfeit = currentGame.score1 + currentGame.score2 === 2;
+
+
                 if (!isForfeit)
                 {
                     teams[currentGame.team1]["pf"] += currentGame.score1;
