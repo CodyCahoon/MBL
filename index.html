@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="balloon.css"/>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,100,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 </head>
 <body ng-controller="MainCtrl">
     <nav>
@@ -31,9 +32,6 @@
             </li>
             <li>
                 MetLife Ballers
-            </li>
-            <li>
-                Peanuts Gang
             </li>
             <li>
                 Red Baron
@@ -108,9 +106,9 @@
 
     <section id="results" ng-if="!hasCurrentTeam">
         <div class="week-selector">
-            <input type="button" id="prevWeek" value="< Previous Week">
+            <button id="prevWeek"><i class="fa fa-arrow-left"></i></button>
             <h1>Results - Game {{currentWeek}}</h1>
-            <input type="button" id="nextWeek" value=" Next Week >">
+            <button id="nextWeek"><i class="fa fa-arrow-right"></i></button>
         </div>
         <table  ng-repeat="game in games">
             <tbody>

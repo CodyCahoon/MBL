@@ -184,6 +184,7 @@
 
             }
             for (team in teams){
+                if (!(team === 'The Nerds' || team === 'Peanuts Gang'))
                 $scope.standings.push(teams[team]);
             }
 

@@ -88,10 +88,6 @@ tr{
     text-align: left;
 }
 
-#standings tr:nth-child(8){
-    border-bottom:2px solid #c00;
-}
-
 #results table{
     width:48%;
     float:left;
@@ -146,10 +142,6 @@ h1{
     color:rgb(93, 93, 93);
 }
 
-#standings tr:nth-child(10){
-    display: none;
-}
-
 .team-stats{
     width:48vw;
 }
@@ -159,11 +151,11 @@ h1{
     text-align:center;
 }
 
-.week-selector h1, .week-selector input{
+.week-selector h1, .week-selector button{
     display:inline-block;
 }
 
-.week-selector input{
+.week-selector button{
     -webkit-appearance:none;
     appearance:none;
     border:1px solid rgb(193, 193, 193);
@@ -173,10 +165,10 @@ h1{
     margin:0px 15px;
 }
 
-.week-selector input:hover{
+.week-selector button:hover{
     cursor:pointer;
 }
 
-.week-selector input:focus, .week-selector input:active{
+.week-selector button:focus, .week-selector button:active{
     outline:none;
 }
