@@ -107,7 +107,7 @@
     <section id="results" ng-if="!hasCurrentTeam">
         <div class="week-selector">
             <button id="prevWeek"><i class="fa fa-arrow-left"></i></button>
-            <h1>Results - Game {{currentWeek}}</h1>
+            <h1>Results - Game {{dates[currentWeek - 1]}}</h1>
             <button id="nextWeek"><i class="fa fa-arrow-right"></i></button>
         </div>
         <table  ng-repeat="game in games">
@@ -166,6 +166,9 @@
                     <td>
                         <span ng-if="game.win1">{{game.score1}} - {{game.score2}}</span>
                         <span ng-if="game.win2">{{game.score2}} - {{game.score1}}</span>
+                    </td>
+                    <td class="date">
+                        {{game.date}}
                     </td>
                 </tr>
             </tbody>

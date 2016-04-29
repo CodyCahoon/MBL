@@ -12,6 +12,20 @@
         $scope.standings = [];
         $scope.currentTeamObj = null;
         $scope.currentWeek = 0;
+        $scope.dates = [
+            "4/1",
+            "4/2",
+            "4/3",
+            "4/4",
+            "4/5",
+            "4/6",
+            "4/7",
+            "4/8",
+            "4/9",
+            "4/10",
+            "4/11"
+        ];
+        $scope.gameNumbers = [];
         var teams = [];
 
         var addGame = function(team1, score1, team2, score2, gameNumber){
@@ -29,6 +43,7 @@
                 newGame["win1"] = false;
                 newGame["win2"] = true;
             }
+            newGame["date"] = $scope.dates[gameNumber - 1];
             $scope.games.push(newGame);
             $scope.origGames.push(newGame);
             $scope.currentWeek = gameNumber;

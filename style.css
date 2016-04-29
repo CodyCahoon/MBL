@@ -172,3 +172,7 @@ h1{
 .week-selector button:focus, .week-selector button:active{
     outline:none;
 }
+
+.date{
+    font-size:14px;
+}
