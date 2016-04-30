@@ -156,7 +156,16 @@
             addGame(ei, 52, mb, 57, 10);
 
             //Week 6, Day 1
-            addGame(dm, 0, dr, 0, 11);
+            addGame(pg, 0, bs, 2, 11);
+            addGame(bl, 51, dm, 39, 11);
+            addGame(rb, 49, ei, 51, 11);
+            addGame(dr, 2, tn, 0, 11);
+
+            //Week 6, Day 2
+            addGame(mb, 50, cl, 42, 12);
+            addGame(bl, 34, dm, 29, 12);
+            addGame(ei, 66, bs, 57, 12);
+            addGame(dr, 2, tn, 0, 12);
 
 
 
