@@ -301,9 +301,6 @@
             });
             $scope.$apply();
         }
-
-
-
     }
 
     app.controller("MainCtrl", MainCtrl);
