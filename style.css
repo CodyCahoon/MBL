@@ -92,6 +92,7 @@ tr{
     width:48%;
     float:left;
     margin:1%;
+    margin-top:0;
 }
 
 #results td:first-child{
