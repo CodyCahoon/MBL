@@ -76,6 +76,10 @@ table{
     border:1px solid #ddd;
 }
 
+#standings{
+    width:98%;
+}
+
 
 #standings tr:nth-child(even){
     background:rgba(0,0,0,0.017);
@@ -195,11 +199,15 @@ h1{
 #results-tab{
     width:100%;
     height:65px;
-    background:red;
+    background:#f1f2f3;
+}
+
+.blank-game{
+    background:#f1f2f3;
 }
 
 #results-tab > table{
-    width:60%;
+    width:100%;
     margin:0;
     height:65px;
     border-spacing:0;
@@ -208,7 +216,7 @@ h1{
 
 #results-tab .recent-games{
     border-right:1px solid #ddd;
-    width:25%;
+    width:20%;
     padding:0;
 }
 
@@ -228,4 +236,8 @@ h1{
 
 #results-tab tr{
     height:100%;
+}
+
+#results-tab #week-picker{
+    width:10%;
 }

@@ -65,7 +65,7 @@
             $scope.origGames.push(newGame);
             $scope.maxWeek = gameNumber;
 
-            $scope.currentWeeksGames = $scope.origGames.filter(function(value){
+            $scope.currentWeekGames = $scope.origGames.filter(function(value){
                 return value.game === $scope.currentWeek;
             });
             $scope.$apply();
@@ -303,6 +303,7 @@
             $scope.games = $scope.games.filter(function(value){
                 return value.game === $scope.currentWeek;
             });
+            $scope.currentWeekGames = $scope.games;
             $scope.$apply();
         }
     }

@@ -11,7 +11,18 @@
         <table>
             <tbody>
                 <tr>
-                    <td class="recent-games" ng-repeat="game in currentWeeksGames">
+                    <td class="recent-games" id="week-picker">
+                        <table>
+                            <tr>
+                                <td>
+                                    <button id="prevWeek"><i class="fa fa-arrow-left"></i></button>
+                                    <span>{{dates[currentWeek - 1]}}</span>
+                                    <button id="nextWeek"><i class="fa fa-arrow-right"></i></button>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td class="recent-games" ng-repeat="game in currentWeekGames">
                         <table ng-if="game.hasPlayed">
                             <tr>
                                 <td>
@@ -53,6 +64,13 @@
                             </tr>
                         </table>
                     </td>
+                    <td class="recent-games blank-game" ng-if="currentWeekGames.length === 3">
+                        <table>
+                            <tr>
+                                &nbsp;
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -90,8 +108,7 @@
     </nav>
 
     <section id="standings" ng-if="!hasCurrentTeam">
-        <h1>Standings</h1>
-        <table >
+        <table>
             <thead>
                 <tr>
                     <th>
@@ -152,58 +169,6 @@
             </tbody>
         </table>
     </section>
-
-    <section id="results" ng-if="!hasCurrentTeam">
-        <div class="week-selector">
-            <button id="prevWeek"><i class="fa fa-arrow-left"></i></button>
-            <h1>Scores - {{dates[currentWeek - 1]}}</h1>
-            <button id="nextWeek"><i class="fa fa-arrow-right"></i></button>
-        </div>
-        <table ng-repeat="game in games">
-            <tbody ng-if="game.hasPlayed">
-                <tr>
-                    <td>
-                        <span class="win" ng-if="game.win1">{{game.team1}}</span>
-                        <span ng-if="game.win2">{{game.team1}}</span>
-                    </td>
-                    <td>
-                        <span class="win" ng-if="game.win1">{{game.score1}}</span>
-                        <span ng-if="game.win2">{{game.score1}}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="win" ng-if="game.win2">{{game.team2}}</span>
-                        <span ng-if="game.win1">{{game.team2}}</span>
-                    </td>
-                    <td>
-                        <span class="win" ng-if="game.win2">{{game.score2}}</span>
-                        <span  ng-if="game.win1">{{game.score2}}</span>
-                    </td>
-                </tr>
-            </tbody>
-            <tbody ng-if="!game.hasPlayed">
-                <tr>
-                    <td>
-                        <span>{{game.team1}}</span>
-                    </td>
-                    <td>
-                        <span>-</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>{{game.team2}}</span>
-                    </td>
-                    <td>
-                        <span>-</span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-
 
     <h1 ng-if="hasCurrentTeam && !currentTeam.startsWith('EI')">{{currentTeam}}</h1>
     <h1 ng-if="hasCurrentTeam && currentTeam.startsWith('EI')">EI & Trey</h1>
