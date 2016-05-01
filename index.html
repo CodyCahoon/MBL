@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 </head>
 <body ng-controller="MainCtrl">
+
+    <!-- Top Results List -->
     <div id="results-tab">
         <table>
             <tbody>
@@ -64,7 +66,14 @@
                             </tr>
                         </table>
                     </td>
-                    <td class="recent-games blank-game" ng-if="currentWeekGames.length === 3">
+                    <td class="recent-games blank-game" ng-if="currentWeekGames.length < 4">
+                        <table>
+                            <tr>
+                                &nbsp;
+                            </tr>
+                        </table>
+                    </td>
+                    <td class="recent-games blank-game" ng-if="currentWeekGames.length < 5">
                         <table>
                             <tr>
                                 &nbsp;
@@ -75,6 +84,8 @@
             </tbody>
         </table>
     </div>
+
+    <!-- Navigation for teams -->
     <nav>
         <ul>
             <li class="selected">
@@ -107,6 +118,7 @@
         </ul>
     </nav>
 
+    <!-- Standings of league, home page -->
     <section id="standings" ng-if="!hasCurrentTeam">
         <table>
             <thead>
@@ -170,9 +182,11 @@
         </table>
     </section>
 
+    <!-- Current team page -->
     <h1 ng-if="hasCurrentTeam && !currentTeam.startsWith('EI')">{{currentTeam}}</h1>
     <h1 ng-if="hasCurrentTeam && currentTeam.startsWith('EI')">EI & Trey</h1>
 
+    <!-- Individual Team Scores -->
     <section class="team-stats" ng-if="hasCurrentTeam">
         <table >
             <tbody>
@@ -213,6 +227,7 @@
         </table>
     </section>
 
+    <!-- Individual team record and stats -->
     <section class="team-stats" ng-if="hasCurrentTeam">
         <table>
             <thead>

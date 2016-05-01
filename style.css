@@ -210,6 +210,9 @@ h1{
 .blank-game{
     background:#f1f2f3;
 }
+ .blank-game{
+    border:none !important;
+}
 
 #results-tab > table{
     width:100%;
@@ -221,7 +224,7 @@ h1{
 
 #results-tab .recent-games{
     border-right:1px solid #ddd;
-    width:20%;
+    width:calc(100% / 7);
     padding:0;
 }
 
@@ -235,6 +238,19 @@ h1{
     width:100%;
 }
 
+.recent-games tr td:first-child{
+    padding-left:25px;
+    text-align:left;
+    width:90%;
+}
+
+.recent-games tr td:last-child{
+    padding-left:0;
+    text-align:left;
+    padding-right:10px;
+}
+
+
 #results-tab td{
     font-size:16px;
 }
@@ -245,4 +261,8 @@ h1{
 
 #results-tab #week-picker{
     width:10%;
+}
+
+#week-picker td{
+    text-align:center;
 }
