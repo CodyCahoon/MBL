@@ -12,6 +12,7 @@
         $scope.standings = [];
         $scope.currentTeamObj = null;
         $scope.currentWeek = 0;
+        $scope.currentWeekGames = [];
         $scope.dates = [
             "3/22",
             "3/23",
@@ -64,6 +65,9 @@
             $scope.origGames.push(newGame);
             $scope.maxWeek = gameNumber;
 
+            $scope.currentWeeksGames = $scope.origGames.filter(function(value){
+                return value.game === $scope.currentWeek;
+            });
             $scope.$apply();
         }
 

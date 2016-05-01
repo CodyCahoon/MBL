@@ -7,6 +7,56 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 </head>
 <body ng-controller="MainCtrl">
+    <div id="results-tab">
+        <table>
+            <tbody>
+                <tr>
+                    <td class="recent-games" ng-repeat="game in currentWeeksGames">
+                        <table ng-if="game.hasPlayed">
+                            <tr>
+                                <td>
+                                    <span class="win" ng-if="game.win1">{{game.team1}}</span>
+                                    <span ng-if="game.win2">{{game.team1}}</span>
+                                </td>
+                                <td>
+                                    <span class="win" ng-if="game.win1">{{game.score1}}</span>
+                                    <span ng-if="game.win2">{{game.score1}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="win" ng-if="game.win2">{{game.team2}}</span>
+                                    <span ng-if="game.win1">{{game.team2}}</span>
+                                </td>
+                                <td>
+                                    <span class="win" ng-if="game.win2">{{game.score2}}</span>
+                                    <span  ng-if="game.win1">{{game.score2}}</span>
+                                </td>
+                            </tr>
+                        </table>
+                        <table ng-if="!game.hasPlayed">
+                            <tr>
+                                <td>
+                                    <span>{{game.team1}}</span>
+                                </td>
+                                <td>
+                                    <span>-</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span>{{game.team2}}</span>
+                                </td>
+                                <td>
+                                    <span>-</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <nav>
         <ul>
             <li class="selected">
