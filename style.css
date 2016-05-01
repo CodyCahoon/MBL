@@ -78,6 +78,7 @@ table{
 
 #standings{
     width:98%;
+    margin-top:45px;
 }
 
 
@@ -121,7 +122,11 @@ thead{
 
 }
 
-th:hover{
+#team-stats th:hover{
+    cursor:pointer;
+}
+
+#standings th:nth-child(n + 3):hover{
     cursor:pointer;
 }
 
