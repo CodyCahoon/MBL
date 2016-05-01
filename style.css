@@ -67,21 +67,17 @@ section{
 
 table{
     border-collapse:collapse;
-    border: 1px solid black;
     width:100%;
     text-align:center;
     font-size:22px;
     margin-bottom:25px;
     background:white;
-}
-
-tr{
-    border:1px solid black;
+    border:1px solid #ddd;
 }
 
 
 #standings tr:nth-child(even){
-    background:#F1F2F3;
+    background:rgba(0,0,0,0.017);
 }
 
 #standings td:nth-child(2){
@@ -107,11 +103,17 @@ tr{
 
 td{
     padding:5px;
+    color:#666;
 }
 
 th{
     font-weight:300;
-    background:rgb(219, 219, 219);
+    background:rgba(0, 0, 0, 0.037);
+}
+
+thead{
+        border:1px solid #ddd;
+
 }
 
 th:hover{
@@ -145,6 +147,16 @@ h1{
 
 .team-stats{
     width:48vw;
+}
+
+.team-stats table{
+    border:none;
+}
+
+.team-stats tr{
+    background:#fbfbfb;
+    border:none;
+    border-bottom:1px solid #dddddd;
 }
 
 .week-selector{
