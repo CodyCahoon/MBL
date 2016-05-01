@@ -82,7 +82,6 @@
                 }
                 $scope.$apply();
 
-                resetGames();
                 filterByWeek();
             });
 
@@ -94,7 +93,6 @@
                 }
                 $scope.$apply();
 
-                resetGames();
                 filterByWeek();
             });
         });
@@ -295,15 +293,10 @@
             }
         });
 
-        function resetGames(){
-            $scope.games = $scope.origGames;
-        }
-
         function filterByWeek(){
-            $scope.games = $scope.games.filter(function(value){
+            $scope.currentWeekGames = $scope.origGames.filter(function(value){
                 return value.game === $scope.currentWeek;
             });
-            $scope.currentWeekGames = $scope.games;
             $scope.$apply();
         }
     }
