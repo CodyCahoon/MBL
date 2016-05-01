@@ -1,18 +1,28 @@
 (function(){
 
+    'use strict';
+
     var app = angular.module("app", []);
 
     var MainCtrl = function($scope){
-
         $scope.currentTeam = null;
+
         $scope.currentGames = [];
+
         $scope.hasCurrentTeam = false;
+
         $scope.games = [];
+
         $scope.origGames = [];
+
         $scope.standings = [];
+
         $scope.currentTeamObj = null;
+
         $scope.currentWeek = 0;
         $scope.currentWeekGames = [];
+        $scope.maxWeek = 0;
+
         $scope.dates = [
             "3/22",
             "3/23",
@@ -35,8 +45,8 @@
             "5/24",
             "5/25"
         ];
-        $scope.gameNumbers = [];
         var teams = [];
+
 
         var addGame = function(team1, score1, team2, score2, gameNumber){
             var newGame = {
@@ -56,6 +66,8 @@
             }
 
             newGame["date"] = $scope.dates[gameNumber - 1];
+
+            //Game has been played
             if (score1 + score2 !== 0) {
                 $scope.currentWeek = gameNumber;
                 newGame["hasPlayed"] = true;
@@ -64,38 +76,34 @@
             $scope.games.push(newGame);
             $scope.origGames.push(newGame);
             $scope.maxWeek = gameNumber;
-
-            $scope.currentWeekGames = $scope.origGames.filter(function(value){
-                return value.game === $scope.currentWeek;
-            });
             $scope.$apply();
         }
 
         $(document).ready(function(){
             loadGames();
+            filterByWeek();
 
             $("body").on('click', '#prevWeek', function(){
-                if ($scope.currentWeek === 1){
-                    $scope.currentWeek = $scope.maxWeek;
-                } else {
-                    $scope.currentWeek--;
-                }
-                $scope.$apply();
-
-                filterByWeek();
+                changeWeek(-1);
             });
 
             $("body").on('click', '#nextWeek', function(){
-                if ($scope.currentWeek === $scope.maxWeek){
-                    $scope.currentWeek = 1
-                } else {
-                    $scope.currentWeek++;
-                }
-                $scope.$apply();
-
-                filterByWeek();
+                changeWeek(1);
             });
         });
+
+        var changeWeek = function(direction){
+            var newWeek = $scope.currentWeek + direction;
+            if (newWeek < 1) {
+                $scope.currentWeek = $scope.maxWeek;
+            } else if (newWeek > $scope.maxWeek) {
+                $scope.currentWeek = 1;
+            } else {
+                $scope.currentWeek = newWeek;
+            }
+            $scope.$apply();
+            filterByWeek();
+        }
 
         var loadGames = function(){
             var pg = "Peanuts Gang";
@@ -178,25 +186,23 @@
             addGame(ei, 66, bs, 57, 12);
             addGame(dr, 2, tn, 0, 12);
 
-
-
-            getStandings();
+            buildStandings();
         }
 
-        var getStandings = function(){
+        var buildStandings = function(){
             var teams = {};
             for (var i = 0; i < $scope.origGames.length; i++){
                 var currentGame = $scope.origGames[i];
-                teams[currentGame.team1] = teams[currentGame.team1] || {wins:0, losses:0, name:currentGame.team1, pf:0, pa:0, wpct:0};
-                teams[currentGame.team2] = teams[currentGame.team2] || {wins:0, losses:0, name:currentGame.team2, pf:0, pa:0, wpct:0};
 
-                var hasNotPlayed = currentGame.score1 + currentGame.score2 === 0;
+                var hasNotPlayed = (currentGame.score1 + currentGame.score2) === 0;
                 if (hasNotPlayed){
                     continue;
                 }
+
+                teams[currentGame.team1] = teams[currentGame.team1] || {wins:0, losses:0, name:currentGame.team1, pf:0, pa:0, wpct:0};
+                teams[currentGame.team2] = teams[currentGame.team2] || {wins:0, losses:0, name:currentGame.team2, pf:0, pa:0, wpct:0};
+
                 var isForfeit = currentGame.score1 + currentGame.score2 === 2;
-
-
                 if (!isForfeit)
                 {
                     teams[currentGame.team1]["pf"] += currentGame.score1;
@@ -234,14 +240,10 @@
                 teams[currentGame.team2]["ppgd"] = teams[currentGame.team2]["ppg"] - teams[currentGame.team2]["oppg"];
 
             }
-            for (team in teams){
+            for (var team in teams){
                 if (!(team === 'The Nerds' || team === 'Peanuts Gang'))
-                $scope.standings.push(teams[team]);
+                    $scope.standings.push(teams[team]);
             }
-
-            filterByWeek();
-
-
             $scope.$apply();
         }
 
@@ -252,6 +254,7 @@
                 return value.name.localeCompare(team) === 0;
             });
             $scope.currentTeamObj = array[0];
+            
             if ($scope.currentTeam.localeCompare("Home") !== 0){
                 $scope.hasCurrentTeam = true;
             }else{
@@ -287,9 +290,6 @@
                     value.team2.localeCompare($scope.currentTeam) === 0 ||
                     $scope.currentTeam.localeCompare("Home") === 0;
                 });
-                if ($scope.currentTeam.localeCompare("Home") === 0){
-                    filterByWeek();
-                }
             }
         });
 
