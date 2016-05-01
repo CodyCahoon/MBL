@@ -81,10 +81,6 @@ nav ul li:hover{
     color:#F1F2F3 !important;
 }
 
-nav img{
-    width:75px;
-}
-
 section{
     float:left;
     width:48%;
@@ -115,23 +111,6 @@ table{
     text-align: left;
 }
 
-#results table{
-    width:48%;
-    float:left;
-    margin:1%;
-    margin-top:0;
-}
-
-#results td:first-child{
-    width:90%;
-    text-align:left;
-}
-
-#results td:last-child{
-    width:10%;
-    text-align:left;
-}
-
 td{
     padding:5px;
     color:#666;
@@ -143,15 +122,10 @@ th{
 }
 
 thead{
-        border:1px solid #ddd;
-
+    border:1px solid #ddd;
 }
 
-#team-stats th:hover{
-    cursor:pointer;
-}
-
-#standings th:nth-child(n + 3):hover{
+.team-stats th:hover, #standings th:nth-child(n + 3):hover{
     cursor:pointer;
 }
 
@@ -193,33 +167,6 @@ h1{
     background:#fbfbfb;
     border:none;
     border-bottom:1px solid #dddddd;
-}
-
-.week-selector{
-    width:100%;
-    text-align:center;
-}
-
-.week-selector h1, .week-selector button{
-    display:inline-block;
-}
-
-.week-selector button{
-    -webkit-appearance:none;
-    appearance:none;
-    border:1px solid rgb(193, 193, 193);
-    background:white;
-    color:black;
-    text-align:center;
-    margin:0px 15px;
-}
-
-.week-selector button:hover{
-    cursor:pointer;
-}
-
-.week-selector button:focus, .week-selector button:active{
-    outline:none;
 }
 
 .date{
