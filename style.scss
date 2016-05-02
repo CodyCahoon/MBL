@@ -1,0 +1,272 @@
+html, body{
+    height:100%;
+    font-family: 'Roboto';
+    font-weight:300;
+    counter-reset: tr;
+}
+
+body{
+    background:#F1F2F3;
+}
+
+html, body, nav, ul, li, a, img{
+    margin:0;
+    padding:0;
+}
+
+nav{
+    width:100%;
+    height:50px;
+    background:#272727;
+    color:#F1F2F3;
+
+    ul{
+        float:left;
+        width:90%;
+        height:100%;
+        list-style:none;
+        display:flex;
+        justify-content: center;
+
+        li{
+            box-sizing: border-box;
+            width:100%;
+            height:100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align:center;
+            font-size:20px;
+
+            &:hover{
+                cursor: pointer;
+                color:white !important;
+            }
+        }
+    }
+
+    div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align:center;
+        float:left;
+        height:50px;
+        width:10%;
+
+        font-size:20px;
+        background:#CC0000;
+        color:#F1F2F3;
+        position:relative;
+
+        &:hover{
+            cursor:pointer;
+        }
+
+        &:before{
+            content:'';
+            background:#cc0000;
+            position:absolute;
+            top:0;
+            right:2px;
+            width:10px;
+            height:50px;
+            transform:skew(-25deg, 0);
+            z-index:3;
+        }
+
+        &:after{
+            content:'';
+            background:#b00000;
+            position:absolute;
+            top:0;
+            right:-11px;
+            width:15px;
+            height:50px;
+            transform:skew(-25deg, 0);
+            z-index:3;
+        }
+    }
+}
+
+.selected{
+    cursor:pointer;
+    color:#F1F2F3 !important;
+}
+
+.grey{
+    color:rgb(93, 93, 93);
+}
+
+section{
+    float:left;
+    width:48%;
+    margin:25px 1%;
+}
+
+table{
+    border-collapse:collapse;
+    width:100%;
+    text-align:center;
+    font-size:22px;
+    margin-bottom:25px;
+    background:white;
+    border:1px solid #ddd;
+}
+
+td{
+    padding:5px;
+    color:#666;
+}
+
+th{
+    font-weight:300;
+    background:rgba(0, 0, 0, 0.037);
+}
+
+thead{
+    border:1px solid #ddd;
+}
+
+h1{
+    font-weight:400;
+    font-size:40px;
+    text-align:center;
+    margin:20px;
+}
+
+#standings{
+    width:98%;
+    margin-top:45px;
+
+    tr:nth-child(even){
+        background:rgba(0,0,0,0.017);
+    }
+
+    td{
+        width:7.5%;
+
+        &:nth-child(2){
+            text-align: left;
+            width:20%;
+        }
+    }
+}
+
+.team-stats th:hover, #standings th:nth-child(n + 3):hover, button:hover{
+    cursor:pointer;
+}
+
+.win{
+    color:#009444;
+    font-weight:400;
+}
+
+.loss{
+    color:#E04444;
+    font-weight:400;
+}
+
+#standings tr td:first-child::before{
+    counter-increment: tr;
+    content:counter(tr);
+}
+
+.team-stats{
+    width:48vw;
+
+    table{
+        border:none;
+    }
+
+    tr{
+        background:#fbfbfb;
+        border:none;
+        border-bottom:1px solid #dddddd;
+    }
+}
+
+.date{
+    font-size:14px;
+}
+
+.blank-game{
+    background:#f1f2f3;
+    border:none !important;
+}
+
+.recent-games{
+    border-right:1px solid #ddd;
+    width:calc(100% / 7);
+    padding:0;
+
+    tr{
+        width:100%;
+
+        td:first-child{
+            padding-left:25px;
+            text-align:left;
+            width:90%;
+        }
+
+        td:last-child{
+            padding-left:0;
+            text-align:left;
+            padding-right:10px;
+        }
+    }
+
+    table{
+        border:none;
+        margin:0;
+        width:100%;
+    }
+}
+
+#results-tab {
+    width:100%;
+    height:65px;
+    background:#f1f2f3;
+
+    > table{
+        width:100%;
+        margin:0;
+        height:65px;
+        border-spacing:0;
+        border:none;
+    }
+
+    td{
+        font-size:16px;
+    }
+
+    tr{
+        height: 100%;
+    }
+
+    #week-picker{
+        width:10%;
+
+        td{
+            text-align:center;
+        }
+    }
+}
+
+.team-schedule{
+    width:30%;
+
+    td{
+        padding:15px;
+        font-size:16px;
+
+        &:nth-child(2){
+            text-align:left;
+        }
+    }
+}
+
+
+.team-detailed-stats{
+    width:65%;
+}

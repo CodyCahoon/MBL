@@ -301,45 +301,50 @@
         $("nav li").click(function(){
             var team =  $(this).html().trim().replace("&amp;", "&");
             $scope.currentTeam = team;
+
             var array = $scope.standings.filter(function(value){
                 return value.name.localeCompare(team) === 0;
             });
             $scope.currentTeamObj = array[0];
+            $scope.hasCurrentTeam = true;
 
-            if ($scope.currentTeam.localeCompare("Home") !== 0){
-                $scope.hasCurrentTeam = true;
-            }else{
-                $("nav li").removeClass("grey");
-                $scope.hasCurrentTeam = false;
-            }
             $("nav li").removeClass("selected");
             $(this).addClass("selected");
             $scope.$apply();
         });
 
-        $("nav li:nth-child(n+2)").mouseover(function(){
-            $("nav li:nth-child(n+2)").addClass("grey");
-            $(this).removeClass("grey");
-        });
-
-        $("nav li:nth-child(n+2)").mouseleave(function(){
-            if (!$scope.hasCurrentTeam)
-                $("nav li:nth-child(n+2)").removeClass("grey");
-            else {
-                $("nav li:nth-child(n+2)").addClass("grey");
-                $(".selected").removeClass("grey");
-
+        $("nav li").mouseleave(function(){
+            var $selected = $(".selected");
+            if ($selected.length === 0){
+                $("nav li").css("color", "#F1F2F3");
+            } else {
+                $("nav li").css("color", "rgb(93, 93, 93)");
+                $selected.css("color", "F1F2F3");
             }
         });
 
+        $("nav li").mouseenter(function(){
+            $("nav li").css("color", "rgb(93, 93, 93)");
+            $(this).css("color", "#F1F2F3");
+            $selected.css("color", "F1F2F3");
+        });
+
+        $("#home").click(clearFilters);
+
+        function clearFilters(){
+            $("nav li").removeClass("selected");
+            $("nav li").css("color", "#F1F2F3");
+            $scope.currentTeam = null;
+            $scope.hasCurrentTeam = false;
+            $scope.$apply();
+        }
 
         $scope.$watch("currentTeam", function(newVal, oldVal){
             if (newVal){
                 $scope.games = $scope.origGames;
                 $scope.games = $scope.games.filter(function(value){
                     return value.team1.localeCompare($scope.currentTeam) === 0 ||
-                    value.team2.localeCompare($scope.currentTeam) === 0 ||
-                    $scope.currentTeam.localeCompare("Home") === 0;
+                    value.team2.localeCompare($scope.currentTeam) === 0 ;
                 });
             }
         });
