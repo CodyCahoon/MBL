@@ -199,10 +199,12 @@
                     continue;
                 }
 
-                teams[currentGame.team1] = teams[currentGame.team1] || {wins:0, losses:0, name:currentGame.team1, pf:0, pa:0, wpct:0, streak:0, games:[], last5:'-'};
-                teams[currentGame.team2] = teams[currentGame.team2] || {wins:0, losses:0, name:currentGame.team2, pf:0, pa:0, wpct:0, streak:0, games:[], last5:'-'};
 
-                var isForfeit = currentGame.score1 + currentGame.score2 === 2;
+
+                teams[currentGame.team1] = teams[currentGame.team1] || {wins:0, losses:0, gp:0, name:currentGame.team1, pf:0, pa:0, wpct:0, streak:0, games:[], last5:'-', forfeits:0};
+                teams[currentGame.team2] = teams[currentGame.team2] || {wins:0, losses:0, gp:0, name:currentGame.team2, pf:0, pa:0, wpct:0, streak:0, games:[], last5:'-', forfeits:0};
+
+                var isForfeit = (currentGame.score1 + currentGame.score2) === 2;
                 if (!isForfeit)
                 {
                     teams[currentGame.team1]["pf"] += currentGame.score1;
@@ -211,16 +213,17 @@
                     teams[currentGame.team2]["pa"] += currentGame.score1;
                     teams[currentGame.team1]["pd"] = teams[currentGame.team1]["pf"] - teams[currentGame.team1]["pa"];
                     teams[currentGame.team2]["pd"] = teams[currentGame.team2]["pf"] - teams[currentGame.team2]["pa"];
+                } else {
+                    teams[currentGame.team1]["forfeits"]++;
+                    teams[currentGame.team2]["forfeits"]++;
                 }
 
                 if (currentGame.win1){
-                    teams[currentGame.team1]["wins"] = teams[currentGame.team1]["wins"] + 1;
-                    teams[currentGame.team2]["losses"] = teams[currentGame.team2]["losses"] + 1;
+                    teams[currentGame.team1]["wins"]++;
+                    teams[currentGame.team2]["losses"]++;
 
                     teams[currentGame.team1]["games"].push("w");
                     teams[currentGame.team2]["games"].push("l");
-
-
 
                     if (teams[currentGame.team1]["streak"] >= 0) {
                         teams[currentGame.team1]["streak"]++;
@@ -233,11 +236,9 @@
                     } else {
                         teams[currentGame.team2]["streak"] = -1;
                     }
-
-
-                }else{
-                    teams[currentGame.team2]["wins"] = teams[currentGame.team2]["wins"] + 1;
-                    teams[currentGame.team1]["losses"] = teams[currentGame.team1]["losses"] + 1;
+                } else {
+                    teams[currentGame.team2]["wins"]++;
+                    teams[currentGame.team1]["losses"]++;
 
                     teams[currentGame.team1]["games"].push("l");
                     teams[currentGame.team2]["games"].push("w");
@@ -259,16 +260,11 @@
                 teams[currentGame.team1]["gp"] = teams[currentGame.team1]["wins"] + teams[currentGame.team1]["losses"];
                 teams[currentGame.team2]["gp"] = teams[currentGame.team2]["wins"] + teams[currentGame.team2]["losses"];
 
-                if (!isForfeit){
-                    teams[currentGame.team1]["gp"]--;
-                    teams[currentGame.team2]["gp"]--;
-                }
+                teams[currentGame.team1]["ppg"] = teams[currentGame.team1]["pf"] / (teams[currentGame.team1]["gp"] - teams[currentGame.team1]["forfeits"]);
+                teams[currentGame.team2]["ppg"] = teams[currentGame.team2]["pf"] / (teams[currentGame.team2]["gp"] - teams[currentGame.team2]["forfeits"]);
 
-                teams[currentGame.team1]["ppg"] = teams[currentGame.team1]["pf"] / teams[currentGame.team1]["gp"];
-                teams[currentGame.team2]["ppg"] = teams[currentGame.team2]["pf"] / teams[currentGame.team2]["gp"];
-
-                teams[currentGame.team1]["oppg"] = teams[currentGame.team1]["pa"] / teams[currentGame.team1]["gp"];
-                teams[currentGame.team2]["oppg"] = teams[currentGame.team2]["pa"] / teams[currentGame.team2]["gp"];
+                teams[currentGame.team1]["oppg"] = teams[currentGame.team1]["pa"] / (teams[currentGame.team1]["gp"] - teams[currentGame.team1]["forfeits"]);
+                teams[currentGame.team2]["oppg"] = teams[currentGame.team2]["pa"] / (teams[currentGame.team2]["gp"] - teams[currentGame.team2]["forfeits"]);
 
                 teams[currentGame.team1]["ppgd"] = teams[currentGame.team1]["ppg"] - teams[currentGame.team1]["oppg"];
                 teams[currentGame.team2]["ppgd"] = teams[currentGame.team2]["ppg"] - teams[currentGame.team2]["oppg"];
@@ -326,7 +322,7 @@
         $("nav li").mouseenter(function(){
             $("nav li").css("color", "rgb(93, 93, 93)");
             $(this).css("color", "#F1F2F3");
-            $selected.css("color", "F1F2F3");
+            $(".selected").css("color", "F1F2F3");
         });
 
         $("#home").click(clearFilters);
