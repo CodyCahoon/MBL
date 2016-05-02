@@ -107,8 +107,13 @@ table{
     background:rgba(0,0,0,0.017);
 }
 
+#standings td{
+    width:7.5%;
+}
+
 #standings td:nth-child(2){
     text-align: left;
+    width:20%;
 }
 
 td{

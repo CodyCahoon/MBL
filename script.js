@@ -199,8 +199,8 @@
                     continue;
                 }
 
-                teams[currentGame.team1] = teams[currentGame.team1] || {wins:0, losses:0, name:currentGame.team1, pf:0, pa:0, wpct:0, streak:0};
-                teams[currentGame.team2] = teams[currentGame.team2] || {wins:0, losses:0, name:currentGame.team2, pf:0, pa:0, wpct:0, streak:0};
+                teams[currentGame.team1] = teams[currentGame.team1] || {wins:0, losses:0, name:currentGame.team1, pf:0, pa:0, wpct:0, streak:0, games:[], last5:'-'};
+                teams[currentGame.team2] = teams[currentGame.team2] || {wins:0, losses:0, name:currentGame.team2, pf:0, pa:0, wpct:0, streak:0, games:[], last5:'-'};
 
                 var isForfeit = currentGame.score1 + currentGame.score2 === 2;
                 if (!isForfeit)
@@ -216,6 +216,12 @@
                 if (currentGame.win1){
                     teams[currentGame.team1]["wins"] = teams[currentGame.team1]["wins"] + 1;
                     teams[currentGame.team2]["losses"] = teams[currentGame.team2]["losses"] + 1;
+
+                    teams[currentGame.team1]["games"].push("w");
+                    teams[currentGame.team2]["games"].push("l");
+
+
+
                     if (teams[currentGame.team1]["streak"] >= 0) {
                         teams[currentGame.team1]["streak"]++;
                     } else {
@@ -230,8 +236,11 @@
 
 
                 }else{
-                    teams[currentGame.team2]["wins"] = teams[currentGame.team2]["wins"] +1;
+                    teams[currentGame.team2]["wins"] = teams[currentGame.team2]["wins"] + 1;
                     teams[currentGame.team1]["losses"] = teams[currentGame.team1]["losses"] + 1;
+
+                    teams[currentGame.team1]["games"].push("l");
+                    teams[currentGame.team2]["games"].push("w");
 
                     if (teams[currentGame.team2]["streak"] >= 0) {
                         teams[currentGame.team2]["streak"]++;
@@ -266,6 +275,23 @@
 
             }
             for (var team in teams){
+                var currentTeam = teams[team];
+                var winCount = 0;
+                var lossCount = 0;
+                var length = currentTeam.games.length - 1;
+                var count = 0;
+                while (length >= 0 && count != 5){
+                    if (currentTeam.games[length] === 'w'){
+                        winCount++;
+                    } else {
+                        lossCount++;
+                    }
+                    length--;
+                    count++;
+                }
+
+                currentTeam['last5'] = winCount + ' - ' + lossCount;
+
                 if (!(team === 'The Nerds' || team === 'Peanuts Gang'))
                     $scope.standings.push(teams[team]);
             }
