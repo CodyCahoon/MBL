@@ -199,8 +199,8 @@
                     continue;
                 }
 
-                teams[currentGame.team1] = teams[currentGame.team1] || {wins:0, losses:0, name:currentGame.team1, pf:0, pa:0, wpct:0};
-                teams[currentGame.team2] = teams[currentGame.team2] || {wins:0, losses:0, name:currentGame.team2, pf:0, pa:0, wpct:0};
+                teams[currentGame.team1] = teams[currentGame.team1] || {wins:0, losses:0, name:currentGame.team1, pf:0, pa:0, wpct:0, streak:0};
+                teams[currentGame.team2] = teams[currentGame.team2] || {wins:0, losses:0, name:currentGame.team2, pf:0, pa:0, wpct:0, streak:0};
 
                 var isForfeit = currentGame.score1 + currentGame.score2 === 2;
                 if (!isForfeit)
@@ -216,9 +216,34 @@
                 if (currentGame.win1){
                     teams[currentGame.team1]["wins"] = teams[currentGame.team1]["wins"] + 1;
                     teams[currentGame.team2]["losses"] = teams[currentGame.team2]["losses"] + 1;
+                    if (teams[currentGame.team1]["streak"] >= 0) {
+                        teams[currentGame.team1]["streak"]++;
+                    } else {
+                        teams[currentGame.team1]["streak"] = 1;
+                    }
+
+                    if (teams[currentGame.team2]["streak"] <= 0) {
+                        teams[currentGame.team2]["streak"]--;
+                    } else {
+                        teams[currentGame.team2]["streak"] = -1;
+                    }
+
+
                 }else{
                     teams[currentGame.team2]["wins"] = teams[currentGame.team2]["wins"] +1;
                     teams[currentGame.team1]["losses"] = teams[currentGame.team1]["losses"] + 1;
+
+                    if (teams[currentGame.team2]["streak"] >= 0) {
+                        teams[currentGame.team2]["streak"]++;
+                    } else {
+                        teams[currentGame.team2]["streak"] = 1;
+                    }
+
+                    if (teams[currentGame.team1]["streak"] <= 0) {
+                        teams[currentGame.team1]["streak"]--;
+                    } else {
+                        teams[currentGame.team1]["streak"] = -1;
+                    }
                 }
                 teams[currentGame.team1]["wpct"] = teams[currentGame.team1]["wins"] / (teams[currentGame.team1]["wins"] + teams[currentGame.team1]["losses"]);
                 teams[currentGame.team2]["wpct"] = teams[currentGame.team2]["wins"] / (teams[currentGame.team2]["wins"] + teams[currentGame.team2]["losses"]);
@@ -254,7 +279,7 @@
                 return value.name.localeCompare(team) === 0;
             });
             $scope.currentTeamObj = array[0];
-            
+
             if ($scope.currentTeam.localeCompare("Home") !== 0){
                 $scope.hasCurrentTeam = true;
             }else{

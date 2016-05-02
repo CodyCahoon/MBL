@@ -103,7 +103,7 @@
             <li>
                 The Deregulators
             </li>
-            <li >
+            <li>
                 DynaMet
             </li>
             <li>
@@ -147,6 +147,12 @@
                     <th data-balloon="Point Differential" data-balloon-pos="up">
                         DIFF
                     </th>
+                    <th data-balloon="Current Streak" data-balloon-pos="up">
+                        STRK
+                    </th>
+                    <th data-balloon="Record last 5 games" data-balloon-pos="up">
+                        L5
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -176,6 +182,13 @@
                         <span class="win" ng-if="team.pd > 0">+{{team.ppgd | number:1}}</span>
                         <span class="loss" ng-if="team.pd < 0">{{team.ppgd  | number:1}}</span>
                         <span ng-if="team.pd === 0">{{team.ppgd | number:1}}</span>
+                    </td>
+                    <td>
+                        <span ng-if="team.streak > 0">W{{team.streak}}</span>
+                        <span ng-if="team.streak < 0">L{{team.streak * -1}}</span>
+                    </td>
+                    <td>
+                        {{team.last5}}
                     </td>
                 </tr>
             </tbody>

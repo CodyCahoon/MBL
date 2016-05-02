@@ -238,3 +238,7 @@ h1{
 #week-picker td{
     text-align:center;
 }
+
+button:hover{
+    cursor:pointer;
+}
