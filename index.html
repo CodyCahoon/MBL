@@ -200,12 +200,12 @@
     <h1 ng-if="hasCurrentTeam && currentTeam.startsWith('EI')">EI & Trey</h1>
 
     <!-- Individual Team Scores -->
-    <section class="team-stats" ng-if="hasCurrentTeam">
+    <section class="team-stats team-schedule" ng-if="hasCurrentTeam">
         <table >
             <tbody>
                 <tr ng-repeat="game in games">
                     <td>
-                        vs.
+                        vs
                     </td>
                     <td ng-if="currentTeam.localeCompare(game.team1) === 0">
                         <span>{{game.team2}}</span>
@@ -231,7 +231,6 @@
                     <td ng-if="!game.hasPlayed">
                         <span> - </span>
                     </td>
-
                     <td class="date">
                         {{game.date}}
                     </td>
@@ -241,7 +240,7 @@
     </section>
 
     <!-- Individual team record and stats -->
-    <section class="team-stats" ng-if="hasCurrentTeam">
+    <section class="team-stats team-detailed-stats" ng-if="hasCurrentTeam">
         <table>
             <thead>
                 <tr>
@@ -251,23 +250,29 @@
                     <th data-balloon="Winning Percentage" data-balloon-pos="up">
                         PCT
                     </th>
-                    <th  data-balloon="Points per game" data-balloon-pos="up">
+                    <th data-balloon="Points per game" data-balloon-pos="up">
                         PPG
                     </th>
-                    <th  data-balloon="Opponent Points per game" data-balloon-pos="up">
+                    <th data-balloon="Opponent Points per game" data-balloon-pos="up">
                         Opp PPG
                     </th>
-                    <th  data-balloon="Point Differential per game" data-balloon-pos="up">
+                    <th data-balloon="Point Differential per game" data-balloon-pos="up">
                         DIFF
                     </th>
-                    <th  data-balloon="Points for" data-balloon-pos="up">
+                    <th data-balloon="Points for" data-balloon-pos="up">
                         PF
                     </th>
-                    <th  data-balloon="Points Allowed" data-balloon-pos="up">
+                    <th data-balloon="Points Allowed" data-balloon-pos="up">
                         PA
                     </th>
-                    <th  data-balloon="Point Differential" data-balloon-pos="up">
+                    <th data-balloon="Point Differential" data-balloon-pos="up">
                         DIFF
+                    </th>
+                    <th data-balloon="Current Streak" data-balloon-pos="up">
+                        STRK
+                    </th>
+                    <th data-balloon="Record last 5 games" data-balloon-pos="up">
+                        L5
                     </th>
                 </tr>
             </thead>
@@ -300,6 +305,13 @@
                         <span class="win" ng-if="currentTeamObj.pd > 0">+{{currentTeamObj.pd | number:1}}</span>
                         <span class="loss" ng-if="currentTeamObj.pd < 0">{{currentTeamObj.pd| number:1}}</span>
                         <span ng-if="currentTeamObj.pd === 0">{{currentTeamObj.pd| number:1}}</span>
+                    </td>
+                    <td>
+                        <span ng-if="currentTeamObj.streak > 0">W{{currentTeamObj.streak}}</span>
+                        <span ng-if="currentTeamObj.streak < 0">L{{currentTeamObj.streak * -1}}</span>
+                    </td>
+                    <td>
+                        {{currentTeamObj.last5}}
                     </td>
                 </tr>
             </tbody>

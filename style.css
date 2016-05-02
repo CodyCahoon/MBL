@@ -247,3 +247,20 @@ h1{
 button:hover{
     cursor:pointer;
 }
+
+.team-schedule{
+    width:30%;
+}
+
+.team-schedule td{
+    padding:15px;
+    font-size:16px;
+}
+
+.team-schedule td:nth-child(2){
+    text-align:left;
+}
+
+.team-detailed-stats{
+    width:65%;
+}
